@@ -3,7 +3,9 @@
   </div>
    <div class="btn-group row mx-2 mt-3 " style="overflow: auto; height: 82%;">
 
-    <button *ngFor="let number of data ; let i =index "  routerLink="/doctor/dash/TodayMeal/{{number.id}}" type="button" class="btn  col-1 mx-2 my-3">{{ i+1 }}</button>
+    <button *ngFor="let number of data ; let i =index "  
+    routerLink="/doctor/dash/TodayMeal/{{number?.id}}" 
+    type="button" class="btn  col-1 mx-2 my-3">{{ i+1 }}</button>
 
    
   </div>

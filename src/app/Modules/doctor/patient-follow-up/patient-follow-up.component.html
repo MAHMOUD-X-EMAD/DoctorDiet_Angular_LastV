@@ -3,13 +3,13 @@
   <div class="row  ">
       <div class=" col-3 mb-3" *ngFor="let patient of PatientList">
           <div (click)="navig(patient.id) " class="profile-card-4 card h-100 text-center w-100" >
-              <img src='data:image/png;base64,{{patient.profileImage}}' class="img" >
+              <img src='data:image/png;base64,{{patient?.profileImage}}' class="img" >
               <div class="profile-content ">
-                  <span class="profile-name bg-white m-auto text-dark rounded-1  p-1 w-50 bg-opacity-75 ">{{patient.fullName}}</span> 
+                  <span class="profile-name bg-white m-auto text-dark rounded-1  p-1 w-50 bg-opacity-75 ">{{patient?.fullName}}</span> 
                   <h4 class="card-title text-start " ><i class="fa-solid text-primary fa-link px-2 " >
-                  </i><a class="link-underline-primary">{{patient.email}}</a></h4>
+                  </i><a class="link-underline-primary">{{patient?.email}}</a></h4>
                   <h4 class="card-title text-start " ><i class="fa-solid fa-phone px-2"></i>
-                      {{patient.phoneNumber}}</h4>
+                      {{patient?.phoneNumber}}</h4>
                    <div class="text-start">
                       <i class="fa-solid fa-bullseye px-2 text-success"></i>
                       <span type="button" *ngFor="let item of patient.goal" class="btn  me-3" disabled>

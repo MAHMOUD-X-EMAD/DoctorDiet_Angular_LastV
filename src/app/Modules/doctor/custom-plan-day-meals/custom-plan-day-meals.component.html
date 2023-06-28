@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-8 mx-4 mt-5">
+  
+        <h2 class="text-center">الوجبات </h2>
+        <div class="text-input "  *ngFor="let breakFast of breakFast">
+  
+            <input type="text" id="input1" disabled placeholder="Try typing something in here!"  [value]="breakFast?.description">
+            <label class="input1" >فطار </label>
+          
+            <div class="col mx-2 ">
+                <button class="btn" routerLink="/doctor/dash/EditCustomMeal/{{planId}}/{{breakFast?.id}}" >تعديل</button>
+             </div>
+        </div>
+  
+        <div class="text-input d-flex" *ngFor="let lunchData of Lunch">
+            <input type="text" id="input1" disabled [value]="lunchData?.description">
+            <label class="input1">&nbsp;&nbsp;غداء&nbsp;</label>
+            <div class="col mx-2 ">
+                <button class="btn" routerLink="/doctor/dash/EditCustomMeal/{{planId}}/{{lunchData?.id}}" >تعديل</button>
+             </div>
+          </div>
+  
+  
+        <div class="text-input d-flex" *ngFor="let Dinner of Dinner">
+            <input type="text" id="input1"disabled placeholder="Try typing something in here!" [value]="Dinner?.description">
+            <label class="input1">&nbsp;&nbsp;عشاء&nbsp;&nbsp;</label>
+            <div class="col mx-2">
+                <button class="btn" routerLink="/doctor/dash/EditCustomMeal/{{planId}}/{{Dinner?.id}}" >تعديل</button>
+             </div>
+        </div>
+  
+  
+  
+        <div class="text-input d-flex" *ngFor="let snaks of snaks">
+            <input type="text" id="input1"disabled placeholder="Try typing something in here!" [value]="snaks?.description">
+            <label class="input1">&nbsp;&nbsp;سناك&nbsp;&nbsp;</label>
+            <div class="col mx-2 ">
+                <button class="btn" routerLink="/doctor/dash/EditCustomMeal/{{planId}}/{{snaks?.id}}" >تعديل</button>
+             </div>
+        </div>
+        <div class="text-input d-flex" *ngFor="let sohor of sohor">
+            <input type="text" id="input1"disabled placeholder="Try typing something in here!" [value]="sohor?.description">
+            <label class="input1">&nbsp;&nbsp;سناك&nbsp;&nbsp;</label>
+            <div class="col mx-2 ">
+                <button class="btn" routerLink="/doctor/dash/EditCustomMeal/{{planId}}/{{sohor?.id}}" >تعديل</button>
+             </div>
+        </div>
+  
+    </div>
+  
+  
+  </div>

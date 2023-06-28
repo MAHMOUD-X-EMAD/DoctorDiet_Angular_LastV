@@ -20,11 +20,11 @@ planId !:any
       this.planId = params.get('id');
       this.doctorService.GetDaysByplanID(this.planId).subscribe(Response => {
         this.data = Response;
-        console.log(this.data)
+        console.log("dayssss",this.data)
       });
     });
  
   }
 
-  numbers: number[] = Array.from({ length: 90 }, (_, index) => index + 1);
+
 }

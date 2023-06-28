@@ -1,3 +1,7 @@
+<div [ngSwitch]="ISsubscribe">
+<div *ngSwitchCase="'Confirmed'">
+
+
 <section class="wrapper my-5" style="margin-top: 150px;">
     <div class="container">
 
@@ -8,104 +12,20 @@
                     الخطة يرجى ترك ملاحظة يومية </p>
             </div>
         </div>
-        <h1>
+        <h1 *ngIf="ISbreakfast">
             <span>
                 <input type="checkbox" name="lose" id="lose-checkbox">
                 <label for="lose-checkbox">الأفطار</label></span>
         </h1>
-        <div class="row " style="justify-content: flex-end;">
-            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+        <div class="row " style="justify-content: flex-end; " >
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let break of breakfast">
                 <div class="card text-white card-has-bg click-col"
-                    style="background-size: cover; background-image:url('https://cdn.apartmenttherapy.info/image/upload/f_jpg,q_auto:eco,c_fill,g_auto,w_1500,ar_1:1/k%2FPhoto%2FRecipes%2F2021-09-breakfast-grits%2FNew%20Finals%2F2021-10-12_ATK8035');">
-                    <img class="card-img d-none" src="https://source.unsplash.com/600x900/?tech,street"
-                        alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
-                    <div class="card-img-overlay d-flex flex-column">
+                    style="background-size: cover; background-image:url('data:image/png;base64,{{break.image}}');">
+                 <div class="card-img-overlay d-flex flex-column">
                         <div class="card-body">
                             <small class="card-meta mb-2 text-white-50 ">وجبة 1</small>
-                            <h4 class="card-title mt-0 fs-6 text-white"> شريحة رومي او لحم بادر طازج غير مصنع + 1/4
-                                رغيف </h4>
-                            <small class="text-white-50"><i class="far fa-clock "></i> 400 kcal</small>
-                        </div>
-                        <div class="card-footer">
-                            <div class="media">
-                                <button class="mr-3 btn blue rounded-1"> أختار</button>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-                <div class="card text-white card-has-bg click-col"
-                    style="background-size: cover; background-image:url('data:image/jpeg;base64,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');">
-                    <img class="card-img d-none" src="https://source.unsplash.com/600x900/?tech,street"
-                        alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
-                    <div class="card-img-overlay d-flex flex-column">
-                        <div class="card-body">
-                            <small class="card-meta mb-2 text-white-50 ">وجبة 2</small>
-                            <h4 class="card-title mt-0 fs-6 text-white"> فول بالليمون + بيض+ 1/4 رغيف + 1 فاكهة
-                            </h4>
-                            <small class="text-white-50"><i class="far fa-clock "></i> 400 kcal</small>
-                        </div>
-                        <div class="card-footer">
-                            <div class="media">
-                                <button class="mr-3 btn blue rounded-1"> أختار</button>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-                <div class="card text-white card-has-bg click-col"
-                    style="background-size: cover; background-image:url('https://food.fnr.sndimg.com/content/dam/images/food/fullset/2021/03/11/FNK_FULL_IRISH_BREAKFAST_H_f.jpg.rend.hgtvcom.406.305.suffix/1615507355216.jpeg');">
-                    <img class="card-img d-none" src="https://source.unsplash.com/600x900/?tech,street"
-                        alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
-                    <div class="card-img-overlay d-flex flex-column">
-                        <div class="card-body">
-                            <small class="card-meta mb-2 text-white-50 ">وجبة 3</small>
-                            <h4 class="card-title mt-0 fs-6 text-white">1توست + شريحة جبن أي نوع + 1 فاكهة </h4>
-                            <small class="text-white-50"><i class="far fa-clock "></i> 400 kcal</small>
-                        </div>
-                        <div class="card-footer">
-                            <div class="media">
-                                <button class="mr-3 btn blue rounded-1"> أختار</button>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-                <div class="card text-white card-has-bg click-col"
-                    style="background-size: cover; background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Full_English_breakfast.jpg/1200px-Full_English_breakfast.jpg');">
-                    <img class="card-img d-none" src="https://source.unsplash.com/600x900/?tech,street"
-                        alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
-                    <div class="card-img-overlay d-flex flex-column">
-                        <div class="card-body">
-                            <small class="card-meta mb-2 text-white-50 ">وجبة 4</small>
-                            <h4 class="card-title mt-0 fs-6 text-white"> 1توست + معلقة مربى + 1 فاكهة </h4>
-                            <small class="text-white-50"><i class="far fa-clock "></i> 400 kcal</small>
-                        </div>
-                        <div class="card-footer">
-                            <div class="media">
-                                <button class="mr-3 btn blue rounded-1"> أختار</button>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-                <div class="card text-white card-has-bg click-col"
-                    style="background-size: cover; background-image:url('https://i2-prod.leicestermercury.co.uk/incoming/article3796479.ece/ALTERNATES/s1200c/1_twoten3.jpg');">
-                    <img class="card-img d-none" src="https://source.unsplash.com/600x900/?tech,street"
-                        alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
-                    <div class="card-img-overlay d-flex flex-column">
-                        <div class="card-body">
-                            <small class="card-meta mb-2 text-white-50 ">وجبة 1</small>
-                            <h4 class="card-title mt-0 fs-6 text-white"> كوب لبن منزوع الدسم + كوب كورن فلكس أو
-                                بليلة </h4>
+                            <h4 class="card-title mt-0 fs-6 text-white"> {{break.description}}
+                                 </h4>
                             <small class="text-white-50"><i class="far fa-clock "></i> 400 kcal</small>
                         </div>
                         <div class="card-footer">
@@ -118,205 +38,101 @@
                 </div>
             </div>
 
-            <h1>
+
+            <h1 *ngIf="ISlunch">
 
                 <span>   <input type="checkbox" name="lose" id="lose-checkbox">
                     <label for="lose-checkbox">الغداء</label></span>
             </h1>
-            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-                <div class="card text-white card-has-bg click-col"
-                    style="background-size: cover; background-image:url('https://media-cdn.yummyadvisor.com/store/96658397-671a-4c6c-be1a-ad1242390218.jpg?x-oss-process=style/type_15');">
-                    <img class="card-img d-none" src="https://source.unsplash.com/600x900/?tech,street"
-                        alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
-                    <div class="card-img-overlay d-flex flex-column">
-                        <div class="card-body">
-                            <small class="card-meta mb-2 text-white-50 ">وجبة 1</small>
-                            <h4 class="card-title mt-0 fs-6 text-white">2 بطاطس بيورية +
-                                قطعتين لحم
-                                + طبق سلطة و طبق خضار</h4>
-                            <small class="text-white-50"><i class="far fa-clock "></i> 400 kcal</small>
-                        </div>
-                        <div class="card-footer">
-                            <div class="media">
-                                <button class="mr-3 btn blue rounded-1"> أختار</button>
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let lunch of lunch ">
+              <div class="card text-white card-has-bg click-col"
+                  style="background-size: cover; background-image:url('data:image/png;base64,{{lunch.image}}');">
+               <div class="card-img-overlay d-flex flex-column">
+                      <div class="card-body">
+                          <small class="card-meta mb-2 text-white-50 ">وجبة 1</small>
+                          <h4 class="card-title mt-0 fs-6 text-white"> {{lunch.description}}
+                               </h4>
+                          <small class="text-white-50"><i class="far fa-clock "></i> 400 kcal</small>
+                      </div>
+                      <div class="card-footer">
+                          <div class="media">
+                              <button class="mr-3 btn blue rounded-1"> أختار</button>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-                <div class="card text-white card-has-bg click-col"
-                    style="background-size: cover; background-image:url('https://media-cdn.yummyadvisor.com/store/a023f665-6303-4d77-be65-1eaeb7724448.jpg');">
-                    <img class="card-img d-none" src="https://source.unsplash.com/600x900/?tech,street"
-                        alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
-                    <div class="card-img-overlay d-flex flex-column">
-                        <div class="card-body">
-                            <small class="card-meta mb-2 text-white-50 ">وجبة 2</small>
-                            <h4 class="card-title mt-0 fs-6 text-white">6 معالق رز+ربع فرخة مع طبق سلطة و طبق خضار
-                                رغيف </h4>
-                            <small class="text-white-50"><i class="far fa-clock "></i> 400 kcal</small>
-                        </div>
-                        <div class="card-footer">
-                            <div class="media">
-                                <button class="mr-3 btn blue rounded-1"> أختار</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-                <div class="card text-white card-has-bg click-col"
-                    style="background-size: cover; background-image:url('https://i.pinimg.com/736x/07/13/d4/0713d4bc752034393b635b5fc2bd5767--chamorro-recipes-filipino-recipes.jpg');">
-                    <img class="card-img d-none" src="https://source.unsplash.com/600x900/?tech,street"
-                        alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
-                    <div class="card-img-overlay d-flex flex-column">
-                        <div class="card-body">
-                            <small class="card-meta mb-2 text-white-50 ">وجبة 3</small>
-                            <h4 class="card-title mt-0 fs-6 text-white">3 معالق رز+سمك مشوى مع طبق+ سلطة
-                                رغيف </h4>
-                            <small class="text-white-50"><i class="far fa-clock "></i> 400 kcal</small>
-                        </div>
-                        <div class="card-footer">
-                            <div class="media">
-                                <button class="mr-3 btn blue rounded-1"> أختار</button>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-                <div class="card text-white card-has-bg click-col"
-                    style="background-size: cover; background-image:url('https://corneliustoday.com/wp-content/uploads/2016/10/ComfortFood-1024x768.jpg');">
-                    <img class="card-img d-none" src="https://source.unsplash.com/600x900/?tech,street"
-                        alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
-                    <div class="card-img-overlay d-flex flex-column">
-                        <div class="card-body">
-                            <small class="card-meta mb-2 text-white-50 ">وجبة 4</small>
-                            <h4 class="card-title mt-0 fs-6 text-white"> 6 معالق مكرونة +3 اصابع كفته + ثمرة بطاطس محمرة
-                                فى الفرن + طبق سلطة
-                            </h4>
-                            <small class="text-white-50"><i class="far fa-clock "></i> 400 kcal</small>
-                        </div>
-                        <div class="card-footer">
-                            <div class="media">
-                                <button class="mr-3 btn blue rounded-1"> أختار</button>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-                <div class="card text-white card-has-bg click-col"
-                    style="background-size: cover; background-image:url('https://www.eatthis.com/wp-content/uploads/sites/4/2019/11/cracker-barrel-meatloaf-recipe-5.jpg');">
-                    <img class="card-img d-none" src="https://source.unsplash.com/600x900/?tech,street"
-                        alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
-                    <div class="card-img-overlay d-flex flex-column">
-                        <div class="card-body">
-                            <small class="card-meta mb-2 text-white-50 ">وجبة 5</small>
-                            <h4 class="card-title mt-0 fs-6 text-white">6 ملاعق رز
-                                - قطعة لحم مشوي أو مسلوق بحجم كف اليد أو طبق خضار - سلطة
-                            </h4>
-                            <small class="text-white-50"><i class="far fa-clock "></i> 400 kcal</small>
-                        </div>
-                        <div class="card-footer">
-                            <div class="media">
-                                <button class="mr-3 btn blue rounded-1"> أختار</button>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-                <div class="card text-white card-has-bg click-col"
-                    style="background-size: cover; background-image:url('https://www.eatthis.com/wp-content/uploads/sites/4/2019/11/copycat-cracker-barrel-chicken-dumplings-5.jpg');">
-                    <img class="card-img d-none" src="https://source.unsplash.com/600x900/?tech,street"
-                        alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
-                    <div class="card-img-overlay d-flex flex-column">
-                        <div class="card-body">
-                            <small class="card-meta mb-2 text-white-50 ">وجبة 6</small>
-                            <h4 class="card-title mt-0 fs-6 text-white">9 معالق رز + سمك مشوى +طبق سلطة
-                                +ثمرة فاكهة </h4>
-                            <small class="text-white-50"><i class="far fa-clock "></i> 400 kcal</small>
-                        </div>
-                        <div class="card-footer">
-                            <div class="media">
-                                <button class="mr-3 btn blue rounded-1"> أختار</button>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <h1>
+            <h1  *ngIf="ISdinner">
                 <span>   <input type="checkbox" name="lose" id="lose-checkbox">
                     <label for="lose-checkbox">العشاء</label></span>
             </h1>
-            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-                <div class="card text-white card-has-bg click-col"
-                    style="background-size: cover; background-image:url('https://www.nestleprofessional.co.uk/sites/default/files/styles/np_recipe_detail/public/2022-04/roast-chicken.png?itok=UzP6kyqW');">
-                    <img class="card-img d-none" src="https://source.unsplash.com/600x900/?tech,street"
-                        alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
-                    <div class="card-img-overlay d-flex flex-column">
-                        <div class="card-body">
-                            <small class="card-meta mb-2 text-white-50 ">وجبة 1</small>
-                            <h4 class="card-title mt-0 fs-6 text-white"> كوب زبادى +ثمرة قاكهة </h4>
-                            <small class="text-white-50"><i class="far fa-clock "></i> 400 kcal</small>
-                        </div>
-                        <div class="card-footer">
-                            <div class="media">
-                                <button class="mr-3 btn blue rounded-1"> أختار</button>
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let dinner of dinner">
+              <div class="card text-white card-has-bg click-col"
+                  style="background-size: cover; background-image:url('data:image/png;base64,{{dinner.image}}');">
+               <div class="card-img-overlay d-flex flex-column">
+                      <div class="card-body">
+                          <small class="card-meta mb-2 text-white-50 ">وجبة 1</small>
+                          <h4 class="card-title mt-0 fs-6 text-white"> {{dinner.description}}
+                               </h4>
+                          <small class="text-white-50"><i class="far fa-clock "></i> 400 kcal</small>
+                      </div>
+                      <div class="card-footer">
+                          <div class="media">
+                              <button class="mr-3 btn blue rounded-1"> أختار</button>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-                <div class="card text-white card-has-bg click-col"
-                    style="background-size: cover; background-image:url('https://www.farmersgirlkitchen.co.uk/wp-content/uploads/2021/03/6-Roast-Chicken-Dinner.jpg');">
-                    <img class="card-img d-none" src="https://source.unsplash.com/600x900/?tech,street"
-                        alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
-                    <div class="card-img-overlay d-flex flex-column">
-                        <div class="card-body">
-                            <small class="card-meta mb-2 text-white-50 ">وجبة 1</small>
-                            <h4 class="card-title mt-0 fs-6 text-white"> 1 بطاطس مسلوقه +جبنة بطماطم </h4>
-                            <small class="text-white-50"><i class="far fa-clock "></i> 400 kcal</small>
-                        </div>
-                        <div class="card-footer">
-                            <div class="media">
-                                <button class="mr-3 btn blue rounded-1"> أختار</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+            <h1 *ngIf="ISsnaks">
+                <span>   <input type="checkbox" name="lose" id="lose-checkbox">
+                    <label for="lose-checkbox">سناكس</label></span>
+            </h1>
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let snaks of snaks">
+              <div class="card text-white card-has-bg click-col"
+                  style="background-size: cover; background-image:url('data:image/png;base64,{{snaks.image}}');">
+               <div class="card-img-overlay d-flex flex-column">
+                      <div class="card-body">
+                          <small class="card-meta mb-2 text-white-50 ">وجبة 1</small>
+                          <h4 class="card-title mt-0 fs-6 text-white"> {{snaks.description}}
+                               </h4>
+                          <small class="text-white-50"><i class="far fa-clock "></i> 400 kcal</small>
+                      </div>
+                      <div class="card-footer">
+                          <div class="media">
+                              <button class="mr-3 btn blue rounded-1"> أختار</button>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-                <div class="card text-white card-has-bg click-col"
-                    style="background-size: cover; background-image:url('https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/roast_chicken_for_one_41998_16x9.jpg');">
-                    <img class="card-img d-none" src="https://source.unsplash.com/600x900/?tech,street"
-                        alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
-                    <div class="card-img-overlay d-flex flex-column">
-                        <div class="card-body">
-                            <small class="card-meta mb-2 text-white-50 ">وجبة 1</small>
-                            <h4 class="card-title mt-0 fs-6 text-white"> ربع رغيف
-                                + شريحة جبنة شيدر+ +كوب زبادى</h4>
-                            <small class="text-white-50"><i class="far fa-clock "></i> 400 kcal</small>
-                        </div>
-                        <div class="card-footer">
-                            <div class="media">
-                                <button class="  mr-3 btn  rounded-1 blue"> أختار</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+            <h1 *ngIf="ISsohor" >
+                <span>   <input type="checkbox" name="lose" id="lose-checkbox">
+                    <label for="lose-checkbox">السحور</label></span>
+            </h1>
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let sohor of sohor">
+              <div class="card text-white card-has-bg click-col"
+                  style="background-size: cover; background-image:url('data:image/png;base64,{{sohor.image}}');">
+               <div class="card-img-overlay d-flex flex-column">
+                      <div class="card-body">
+                          <small class="card-meta mb-2 text-white-50 ">وجبة 1</small>
+                          <h4 class="card-title mt-0 fs-6 text-white"> {{sohor.description}}
+                               </h4>
+                          <small class="text-white-50"><i class="far fa-clock "></i> 400 kcal</small>
+                      </div>
+                      <div class="card-footer">
+                          <div class="media">
+                              <button class="mr-3 btn blue rounded-1"> أختار</button>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
         </div>
     </div>
 </section>
@@ -336,13 +152,43 @@
     <div class="col-md-6 bootstrap snippets">
         <div class="panel">
             <div class="panel-body">
-                <textarea class="form-control m-3" style="text-align: end;" rows="2"
+                <textarea class="form-control notebody m-3" [(ngModel)]="addPatientNote.text" style="text-align: end;" rows="2"
                     placeholder=" اكتب ملاحظتك هنا ليراها طبيبك"></textarea>
                 <div class="mar-top clearfix" style="text-align: end;">
-                    <button class="btn btn-sm  blue pull-right" type="submit"><i class="fa fa-pencil fa-fw"></i>
+                    <button class="btn btn-sm  blue pull-right" (click)="AddPatientNote ()" type="submit"><i class="fa fa-pencil fa-fw"></i>
                         تم</button>
+                </div>
+                <div *ngFor="let note of patientNotes">
+                    {{note.text}}
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+</div>
+<div *ngSwitchCase="'NotConfirmed'" class="m-5">
+    <div class="container" style="direction: rtl;">
+    
+        <div class="alert alert-danger text-left" role="alert">
+            <h4 class="alert-heading fw-bold">نأسف</h4>
+            <p>لم يتم الاشتراك فى خطة بعد </p>
+            <hr>
+            <p class="mb-0">يمكنك الاشتراك فى خطة عن طريق اختيار دكتور وطلب الاشتراك</p>
+          </div>
+      </div>
+  
+</div>
+
+<div *ngSwitchCase="'Canceled'">
+    <div class="alert alert-danger text-left" role="alert">
+        <h4 class="alert-heading fw-bold">نأسف</h4>
+        <p>يجيب دفع الاشتراك لمتابعة الخطة</p>
+        <hr>
+   </div>
+  </div>
+  
+</div>
+
+
+

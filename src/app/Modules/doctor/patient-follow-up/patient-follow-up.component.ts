@@ -33,12 +33,8 @@ export class PatientFollowUpComponent {
   }
 
   navig( Patientid:string){
-    this.router.navigate(['/doctor/dash/PatienDe'])
+    this.router.navigate([`/doctor/dash/PatienDe/${Patientid}`])
 
   }
-
-
-
-
 
 }

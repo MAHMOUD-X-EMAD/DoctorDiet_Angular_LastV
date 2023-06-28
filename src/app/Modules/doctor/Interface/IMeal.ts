@@ -1,7 +1,8 @@
 export interface IMeal{
-
-       description :string|any
+       Id?: number
+       Description :string|any
+       
        image: any;
-       category :number|any
-       type:number|any
+       category? :number|any
+       type?:number|any
 }

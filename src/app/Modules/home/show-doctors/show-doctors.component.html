@@ -5,11 +5,11 @@
     <div *ngFor="let doctor of doctors" class=" col-md-6 mb-4">
       <div class="card" style="width: 75%;">
         <img src='data:image/png;base64,{{doctor.profileImage}}' loading="lazy" class="card-img-top" alt="" name="as"
-          style="width: auto; height: auto; border-radius: 5px 5px 0 0;">
+          style="width: 100%; height: 12.5rem; border-radius: 5px 5px 0 0;">
         <div class="card-body text-center" style="overflow-x: hidden;">
           <h2 class="card-title" style="font-size:x-large; font-weight: bold; color: #0f62c6;"> {{doctor.fullName}} /د
           </h2>
-          <a routerLink="/doctor/KnowDoctor/{{doctor.id}}" (click)="close()" class="btn btnB"> Connect </a>
+          <a routerLink="/doctor/KnowDoctor/{{doctor.id}}" (click)="close()" class="btn btnB"> تفاصيل </a>
         </div>
       </div>
 

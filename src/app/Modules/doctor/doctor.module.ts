@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { KnowYourDocComponent } from './know-your-doc/know-your-doc.component';
-import { ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { DoctorRoutingModule } from './doctor-routing.module';
 import { SubscrebtionComponent } from './subscrebtion/subscrebtion.component';
@@ -17,6 +17,9 @@ import { TodayMealsComponent } from './today-meals/today-meals.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { PatientDetailsComponent } from './patient-details/patient-details.component';
 import { ProfileComponent } from './profile/profile.component';
+import { EditCustomPlanComponent } from './edit-custom-plan/edit-custom-plan.component';
+import { CustomPlanDayComponent } from './custom-plan-day/custom-plan-day.component';
+import { CustomPlanDayMealsComponent } from './custom-plan-day-meals/custom-plan-day-meals.component';
 
 
 
@@ -36,13 +39,17 @@ import { ProfileComponent } from './profile/profile.component';
     TodayMealsComponent,
     WelcomeComponent,
     PatientDetailsComponent,
-    ProfileComponent
+    ProfileComponent,
+    EditCustomPlanComponent,
+    CustomPlanDayComponent,
+    CustomPlanDayMealsComponent
   ],
   imports: [
     DoctorRoutingModule,
     CommonModule,
     RouterLink,
     ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class DoctorModule { }

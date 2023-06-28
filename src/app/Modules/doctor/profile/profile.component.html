@@ -66,6 +66,15 @@
             <div class="tab-pane fade profile-edit" id="profile-edit">
               <h2 class="card-title" style="color:  #1C4980;font-weight: bold;"><i
                   class="fa-sharp fa-solid fa-user-pen ms-2"></i>تعديل بياناتك</h2>
+
+                  <div *ngIf="showConfirmation" class="confirmation-box">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                      تم تغير بياناتك بنجاح 
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="hideConfirmation()"></button>
+                    </div>
+                  
+               
+                  </div>
               <form [formGroup]="UserInfo" (ngSubmit)="onSubmit(UserInfo)">
 
 
@@ -75,8 +84,8 @@
                     <span class="input-group-text" style="background-color: #1C4980; color: aliceblue;">
                       <i class="fa-sharp fa-solid fa-signature"></i>
                     </span>
-                    <input type="text" class="form-control" formControlName="fullName" id="Lname"
-                      placeholder="تعديل اسم كامل" value='{{data?.fullName}}'>
+                    <input  [(ngModel)]="EditUser.FullName" type="text" class="form-control"  id="FullName" name="FullName"
+                    placeholder="تعديل اسم كامل" value='{{data?.fullName}}' (ngModelChange)="onInputChange('FullName', $event)">
                   </div>
 
 
@@ -95,7 +104,7 @@
                     <span class="input-group-text" style="background-color: #1C4980; color: aliceblue;">
                       <i class="fa-sharp fa-solid fa-envelope"></i>
                     </span>
-                    <input type="email" class="form-control" id="email" formControlName="email"
+                    <input type="email" class="form-control" id="email" name="Email"  [(ngModel)]="EditUser.Email" (ngModelChange)="onInputChange('Email', $event)"
                       placeholder="تعديل بريدك الالكتروني" value='{{data?.email}}'>
                   </div>
 
@@ -109,7 +118,24 @@
 
                 </div>
 
-            
+                <div class="mb-3">
+                  <label for="profileImage" class="form-label">صورتك</label>
+                  <div class="input-group">
+                    <span class="input-group-text" style="background-color: #1C4980; color: aliceblue;">
+                      <i class="fa-sharp fa-solid fa-signature"></i>
+                    </span>
+                    <input type="file" class="form-control" id="profileImage" name="ProfileImage" [(ngModel)]="EditUser.ProfileImage"
+                      placeholder="تعديل الصورة"  (ngModelChange)="onInputChange('ProfileImage', $event)"  (change)="changeImg($event)">
+                  </div>
+
+
+                  <div *ngIf="profileImage?.errors != null && profileImage?.touched">
+
+                    <p class="text-danger" *ngIf="profileImage?.errors?.['required']">
+                      أدخل صورتك.
+                    </p>
+                  </div>
+                </div>
 
                 <div class="mb-3">
 
@@ -121,7 +147,7 @@
                     </span>
                    
                     <input  type="text" 
-                    class="form-control" id="phoneNumber0" formControlName="phoneNumber0"
+                    class="form-control" id="phoneNumber0"  name="phoneNumber0"  [(ngModel)]="EditUser.PhoneNumber0" (ngModelChange)="onInputChange('PhoneNumber', $event)"
                           placeholder="تعديل رقم تليفونك" [value]="data?.contactInfo[0].value">
 
                   </div>
@@ -144,7 +170,7 @@
                     </span>
                    
                     <input  type="text" 
-                    class="form-control" id="phoneNumber1" formControlName="phoneNumber1"
+                    class="form-control" id="phoneNumber1"  name="phoneNumber1"  [(ngModel)]="EditUser.PhoneNumber1" (ngModelChange)="onInputChange('PhoneNumber', $event)"
                           placeholder="تعديل رقم تليفونك"[value]="data?.contactInfo[0]?.value !== undefined ? 
                           data?.contactInfo[0]?.value : ''" [value]="data?.contactInfo[0]?.value !== undefined ? data?.contactInfo[0]?.value : ''">
 
@@ -168,7 +194,7 @@
                     </span>
                    
                     <input  type="text" 
-                    class="form-control" id="phoneNumber2" formControlName="phoneNumber2"
+                    class="form-control" id="phoneNumber2"  name="phoneNumber2"  [(ngModel)]="EditUser.PhoneNumber2" (ngModelChange)="onInputChange('PhoneNumber', $event)"
                           placeholder="تعديل رقم تليفونك" [value]="data?.contactInfo[0]?.value !== undefined ? 
                           data?.contactInfo[0]?.value : ''" [value]="data?.contactInfo[0]?.value !== undefined ? data?.contactInfo[0]?.value : ''" >
 
@@ -190,7 +216,8 @@
                     <span class="input-group-text" style="background-color: #1C4980; color: aliceblue;">
                       <i class="fa fa-solid fa-glasses"></i>
                     </span>
-                    <input type="text" class="form-control" id="Specializtion" formControlName="Specializtion"
+                    <input type="text" class="form-control" id="Specializtion" 
+                    name="Specializtion"  [(ngModel)]="EditUser.Specializtion" (ngModelChange)="onInputChange('Specializtion', $event)"
                       placeholder="تعديل تخصص" value='{{data?.specialization}}'>
                   </div>
                 </div>
@@ -202,7 +229,7 @@
                     <span class="input-group-text" style="background-color: #1C4980; color: aliceblue;">
                       <i class="fa-sharp fa-solid fa-location-crosshairs"></i>
                     </span>
-                    <input type="text" class="form-control" id="location" formControlName="location"
+                    <input type="text" class="form-control" id="location"  name="Location"  [(ngModel)]="EditUser.Location" (ngModelChange)="onInputChange('Location', $event)"
                       placeholder="تعديل موقع" value='{{data?.location}}'>
                   </div>
                 </div>

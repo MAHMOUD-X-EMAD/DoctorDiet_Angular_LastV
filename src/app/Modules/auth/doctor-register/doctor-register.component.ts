@@ -12,13 +12,16 @@ import { RegisterService } from '../Services/register.service';
 })
 export class DoctorRegisterComponent {
   selectedFile!: File;
+  selectedFile1!: File;
   error: string = '';
   constructor(private formBuilder: FormBuilder,private _router:Router,private _registerService:RegisterService) { }
 
   DoctorRegisterForm = this.formBuilder.group({
     FullName: ['', [Validators.required,Validators.minLength(3)]],
     Specialization: ['', [Validators.required,Validators.minLength(2)]],
-    Phone: ['', [Validators.required,Validators.minLength(2)]],
+    Phone1: ['', [Validators.required,Validators.pattern(/^(010[0-9]{8}|011[0-9]{8}|012[0-9]{8}|015[0-9]{8})$/)]],
+    Phone2: ['', [Validators.pattern(/^(010[0-9]{8}|011[0-9]{8}|012[0-9]{8}|015[0-9]{8})$/)]],
+    Phone3: ['', [Validators.pattern(/^(010[0-9]{8}|011[0-9]{8}|012[0-9]{8}|015[0-9]{8})$/)]],
     aleternativePhones:this.formBuilder.array([]),
     Location: ['', [Validators.required,Validators.minLength(3)]],
     username: ['', [Validators.required, Validators.minLength(5)]],
@@ -36,16 +39,19 @@ export class DoctorRegisterComponent {
   get Specialization() {
     return this.DoctorRegisterForm.get('Specialization');
   }
-  get aleternativePhones()
-  {
-    return this.DoctorRegisterForm.get('aleternativePhones') as FormArray;
-  }
+
   get Location() {
     return this.DoctorRegisterForm.get('Location');
   }
 
-  get PhoneNumber(){
-    return this.DoctorRegisterForm.get('Phone');
+  get PhoneNumber1(){
+    return this.DoctorRegisterForm.get('Phone1');
+  }
+  get PhoneNumber2(){
+    return this.DoctorRegisterForm.get('Phone2');
+  }
+  get PhoneNumber3(){
+    return this.DoctorRegisterForm.get('Phone3');
   }
   get password() {
     return this.DoctorRegisterForm.get('password');
@@ -87,16 +93,19 @@ export class DoctorRegisterComponent {
       formData.append('Specialization', registerForm.get("Specialization").value);
       formData.append('Location', registerForm.get("Location").value);
       formData.append('ProfileImage', this.selectedFile,this.selectedFile.name);
-      formData.append('SyndicateCarnet', this.selectedFile,this.selectedFile.name);
+      formData.append('SyndicateCarnet', this.selectedFile1,this.selectedFile1.name);
 
-     
-      const alternativePhones = registerForm.get('aleternativePhones') as FormArray;
-      for (let i = 0; i < alternativePhones.length; i++) {
-        formData.append('contactInfo', alternativePhones.at(i).value);
+    
+      formData.append('contactInfo', registerForm.get("Phone1").value)
+      if( registerForm.get("Phone2").value != ""){
+        formData.append('contactInfo', registerForm.get("Phone2").value)
+      } 
+      if( registerForm.get("Phone3").value != ""){
+        formData.append('contactInfo', registerForm.get("Phone3").value)
       }
-      formData.append('contactInfo', registerForm.get("Phone").value)
-      for (let i = 0; i < alternativePhones.length; i++) {
-      console.log('alternativePhones : ',alternativePhones.value);}
+ 
+      console.log("contactInfo3",registerForm.get("Phone3").value)
+      console.log("contactInfo2",registerForm.get("Phone2").value)
       
       console.log('formData : ',formData);
     this._registerService.DoctorRegister(formData).subscribe(
@@ -105,7 +114,7 @@ export class DoctorRegisterComponent {
         console.log(resp)
         if (resp.message == 'Success') {
           console.log("Recored Added")
-          this._router.navigate(['Login']);
+          this._router.navigate(['/auth/Login']);
 
         }
         else {
@@ -122,14 +131,20 @@ export class DoctorRegisterComponent {
 
     }
   }
-  addAlternativePhone()
-  {
-    this.aleternativePhones.push(this.formBuilder.control(''));
-  }
+ 
 
   onSelectFile(fileInput: any) {
     this.selectedFile = <File>fileInput.target.files[0];
     console.log(this.selectedFile)
+    const dataTransfer = new ClipboardEvent('').clipboardData || new DataTransfer();
+    dataTransfer.items.add(new File(['my-file'], 'new-file-name'));
+    const inputElement: HTMLInputElement = document.getElementById('formFile') as HTMLInputElement
+
+     inputElement.files = dataTransfer.files;
+  }
+  onSelectFile1(fileInput: any) {
+    this.selectedFile1 = <File>fileInput.target.files[0];
+    console.log(this.selectedFile1)
     const dataTransfer = new ClipboardEvent('').clipboardData || new DataTransfer();
     dataTransfer.items.add(new File(['my-file'], 'new-file-name'));
     const inputElement: HTMLInputElement = document.getElementById('formFile') as HTMLInputElement

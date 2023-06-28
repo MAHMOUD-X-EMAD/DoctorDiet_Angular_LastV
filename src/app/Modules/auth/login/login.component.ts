@@ -35,16 +35,12 @@ export class LoginComponent implements OnInit {
 
   onSubmit(LoginForm: FormGroup) {
     if (this.LoginForm.valid) {
-      console.log('Form submitted!');
-      console.log('', this.LoginForm.value);
+     
 
       this._LoginService.Login(this.LoginForm.value).subscribe((resp) => {
         if (resp.messege == 'Success') {
-          console.log('User Enterd!');
           localStorage.setItem('userToken', resp.token);
-
           this._LoginService.saveUserData();
-          this._LoginService.getUserId();
           this.userRole=this._LoginService.getUserRole();
           if( this.userRole=='Patient'){
                   this._router.navigate(['home'])

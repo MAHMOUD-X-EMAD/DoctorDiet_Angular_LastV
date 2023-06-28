@@ -1,26 +1,58 @@
 <div class="row">
-    <div class="col-3"></div>
-    <div class="col-5 mx-4 mt-5">
+ <div class="    m-auto  mt-5">
 
-        <h2 class="text-center">الوجبات </h2>
-        <div class="text-input">
-            <input type="text" id="input1" disabled placeholder="Try typing something in here!" value="1Egg + 1cup Milk">
-            <label class="input1">فطار </label>
-        </div>
+        <h2 class="text-center fs-1">الوجبات </h2>
+ <div class="col-6 m-auto">
 
-        <div class="text-input">
-            <input type="text" id="input1" disabled placeholder="Try typing something in here!" value="1Egg + 1cup Coffe">
-            <label class="input1">&nbsp;&nbsp;غداء&nbsp;</label>
-        </div>
+    <div class="text-input d-flex "  *ngFor="let breakFast of breakFast">
 
-        <div class="text-input">
-            <input type="text" id="input1"disabled placeholder="Try typing something in here!" value="Meat + 1cup Milk">
-            <label class="input1">&nbsp;&nbsp;عشاء&nbsp;&nbsp;</label>
-        </div>
+        <input type="text" id="input1" disabled placeholder="Try typing something in here!"  [value]="breakFast?.description">
+        <label class="input1" routerLink="/doctor/dash/ُEditMeal/{{breakFast?.id}}">فطار </label>
+        <div class="col mx-4 ">
+            <button class="btn" routerLink="/doctor/dash/ُEditMeal/{{planId}}/{{breakFast?.id}}" >تعديل</button>
+         </div>
+    </div>
+
+    <div class="text-input d-flex" *ngFor="let lunchData of Lunch">
+        <input type="text" id="input1" disabled [value]="lunchData?.description">
+        <label class="input1">&nbsp;&nbsp;غداء&nbsp;</label>
+        <div class="col mx-4 ">
+            <button class="btn" routerLink="/doctor/dash/ُEditMeal//{{planId}}/{{lunchData?.id}}" >تعديل</button>
+         </div>
+      </div>
+      
+
+    <div class="text-input d-flex" *ngFor="let Dinner of Dinner">
+        <input type="text" id="input1"disabled placeholder="Try typing something in here!" [value]="Dinner?.description">
+        <label class="input1">&nbsp;&nbsp;عشاء&nbsp;&nbsp;</label>
+        <div class="col mx-4">
+            <button class="btn" routerLink="/doctor/dash/ُEditMeal//{{planId}}/{{Dinner?.id}}" >تعديل</button>
+         </div>
+    </div>
+    
+    <div class="text-input d-flex" *ngFor="let snaks of snaks">
+        <input type="text" id="input1"disabled placeholder="Try typing something in here!" [value]="snaks?.description">
+        <label class="input1">&nbsp;&nbsp;سناك&nbsp;&nbsp;</label>
+        <div class="col mx-4 ">
+            <button class="btn" routerLink="/doctor/dash/ُEditMeal/{{planId}}/{{snaks?.id}}" >تعديل</button>
+         </div>
+    </div>
+
+
+
+
+    <div class="text-input d-flex" *ngFor="let sohor of sohor">
+        <input type="text" id="input1"disabled placeholder="Try typing something in here!" [value]="sohor?.description">
+        <label class="input1">&nbsp;&nbsp;سناك&nbsp;&nbsp;</label>
+        <div class="col mx-4 ">
+            <button class="btn" routerLink="/doctor/dash/EditCustomMeal/{{planId}}/{{sohor?.id}}" >تعديل</button>
+         </div>
+    </div>
+
+ </div>
+
 
     </div>
-    <div class="col mx-4 mt-5">
-       <button class="btn ">تعديل</button>
-    </div>
+ 
 
 </div>

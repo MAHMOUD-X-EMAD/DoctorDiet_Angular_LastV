@@ -152,7 +152,7 @@
                   <div class="form-outline mb-5 col-md-6">
                     <div class="input-group">
                       <input type="file" id="formFile" formControlName="SyndicateCarnet" style="direction: rtl; "
-                        class="form-control text-center " (change)="onSelectFile($event)" />
+                        class="form-control text-center " (change)="onSelectFile1($event)" />
                       <label for="formFile" class="input-group-text">
                         كارنيه النقابه
                         &nbsp;
@@ -168,36 +168,54 @@
                   </div>
                 </div>
   
-  
+  <!--  -->
                 <div class="form-outline mb-5">
                   <div class="input-group">
-                    <input type="text" id="Phone" formControlName="Phone" style="direction: rtl; "
-                      placeholder="رقم التليفون" class="form-control text-center my-3" />
-                    <label for="Phone" class="input-group-text">
-                      <button (click)="addAlternativePhone()" class="btn btn-success"
-                        style="background-color:#163A66;">اضافة رقم</button>
-  
+                    <input type="text" id="Phone1" formControlName="Phone1" style="direction: rtl; "
+                      placeholder=" رقم التليفون 1"  class="form-control text-center my-3" />
+                    <label for="Phone1" class="input-group-text">
+                      <i class="fa-solid fa-phone-volume " style="color:#163A66"></i>
                     </label>
                   </div>
-  
-  
-                  <div formArrayName="aleternativePhones" *ngFor="let email of aleternativePhones.controls; let i=index">
-                    <div class="input-group">
-                    
-                      <input type="text" [formControlName]="i" style="direction: rtl; " placeholder="رقم التليفون {{i+2}}"
-                        class="form-control text-center" />
-
-
-
-                        <label for="Phone" class="input-group-text">
-                          <i class="fa-solid fa-phone-volume fa-lg" style="color:#163A66"></i>
-                        </label>
-                    </div>
+                       
+                   <div *ngIf="PhoneNumber1?.errors != null && PhoneNumber1?.touched">
+                    <p *ngIf="PhoneNumber1?.errors?.['required']" class="text-danger">
+                      برجاء ادخال المكان
+                    </p>
+                    <p *ngIf="Specialization?.errors?.['minlength']" class="text-danger">
+                      يجب ان يكون المكان مكون من 3 حروف علي الاقل
+                    </p>
                   </div>
-                  
-  
-                  <div *ngIf="PhoneNumber?.errors != null && PhoneNumber?.touched">
-                    <p *ngIf="PhoneNumber?.errors?.['required']" class="text-danger">
+                </div>
+                <div class="form-outline mb-5">
+                  <div class="input-group">
+                    <input type="text" id="Phone2" formControlName="Phone2" style="direction: rtl; "
+                      placeholder=" رقم التليفون 2"  class="form-control text-center my-3" />
+                    <label for="Phone2" class="input-group-text">
+                      <i class="fa-solid fa-phone-volume " style="color:#163A66"></i>
+                    </label>
+                  </div>
+                       
+                   <div *ngIf="PhoneNumber2?.errors != null && PhoneNumber2?.touched">
+                    <p *ngIf="PhoneNumber2?.errors?.['required']" class="text-danger">
+                      برجاء ادخال المكان
+                    </p>
+                    <p *ngIf="Specialization?.errors?.['minlength']" class="text-danger">
+                      يجب ان يكون المكان مكون من 3 حروف علي الاقل
+                    </p>
+                  </div>
+                </div>
+                <div class="form-outline mb-5">
+                  <div class="input-group">
+                    <input type="text" id="Phone3" formControlName="Phone3" style="direction: rtl; "
+                      placeholder=" رقم التليفون 3"  class="form-control text-center my-3" />
+                    <label for="Phone" class="input-group-text">
+                      <i class="fa-solid fa-phone-volume " style="color:#163A66"></i>
+                    </label>
+                  </div>
+                       
+                   <div *ngIf="PhoneNumber3?.errors != null && PhoneNumber3?.touched">
+                    <p *ngIf="PhoneNumber3?.errors?.['required']" class="text-danger">
                       برجاء ادخال المكان
                     </p>
                     <p *ngIf="Specialization?.errors?.['minlength']" class="text-danger">

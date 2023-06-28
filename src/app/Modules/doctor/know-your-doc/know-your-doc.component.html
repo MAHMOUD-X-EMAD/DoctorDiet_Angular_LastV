@@ -1,7 +1,7 @@
-<section class="Header content py-5 ">
+<section class="Header content py-5 p-2 ">
 
 
-  <div class="card rounded mb-3 shadow border-color" style="max-width: 100%;">
+  <div class="card rounded mb-3 m-auto   shadow " style="max-width: 80%;">
     <div class="row g-0">
 
       <div class="col-md-8">
@@ -45,12 +45,15 @@
           <br>
 
 
-          <div class="row align-items-center  border " dir="rtl">
+          <div class="row align-items-center  " dir="rtl">
 
-            <div class="card-text text-end text-md-end" style="color:#163A66; font-size: 1rem;">
-              <span style="margin-top: 20;" class="fa fa-solid fa-clipboard-list">
+            <div class="card-text text-end text-md-end" style="    justify-content: center;
+            color: #163A66;
+            font-size: 1rem;
+            display: flex;">
+              <span style="box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;" class="fa fa-solid fa-clipboard-list p-2 rounded-2 pt-3 ">
 
-                &nbsp; خطه أ لمده 3 شهور &nbsp;
+                &nbsp; مدة الخطة 3 شهور &nbsp;
               </span>
 
 
@@ -60,8 +63,8 @@
             </div>
 
 
-            <p *ngIf="appear" class="card-text"
-              style="text-align: right; color:#163A66; line-height: .5;  font-size: 1.1rem;">
+            <p *ngIf="appear" class="card-text bg-success bg-opacity-25 w-75 m-auto mt-3 rounded-2 p-2 m-2"
+              style="text-align: center; color:#163A66; line-height: .5;  font-size: 1.1rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;">
               <br>
               <i id="i5" class=" fa-solid fa-phone-volume ">&nbsp;&nbsp;يرجي التواصل مع الدكتوره لدفع الاشتراك </i>
               <br>
@@ -88,8 +91,8 @@
       </div>
 
 
-      <div class="col-md-4 ">
-        <img src='data:image/png;base64,{{doctor.profileImage}}' loading="lazy" class="img-fluid rounded " name="asm"
+      <div class="col-md-4  m-auto">
+        <img src='data:image/png;base64,{{doctor.profileImage}}' loading="lazy" class="img-fluid p-3 rounded " name="asm"
           style="width: auto; height: auto;" alt="...">
       </div>
 

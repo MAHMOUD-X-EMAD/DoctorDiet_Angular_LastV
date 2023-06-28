@@ -1,36 +1,42 @@
-<div class="card" style="direction: rtl;">
+<div class="card" style="direction: rtl; @media (max-width: 768px) {
+    .element {
+      overflow: auto;
+    }
+  }
+  ">
     <div class="card-body ">
 
         <ul class="nav nav-tabs custom-tabs">
 
             <li class="nav-item">
                 <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#addPlan"
-                    style="background-color: blue; color: aliceblue;"> + أضافه خطه</button>
+                    style="background-color: #0d1c9e; color: aliceblue;"> + أضافه خطه</button>
             </li>
 
             <li class="nav-item">
                 <button class="nav-link" data-bs-toggle="tab" data-bs-target="#addDay"
-                    style="background-color: blue; color: aliceblue;">+ أضافه يوم </button>
+                    style="background-color: #0d1c9e; color: aliceblue">+ أضافه يوم </button>
             </li>
 
         </ul>
 
-        <div class="tab-content pt-2">
+        <div class="tab-content p-4 ">
 
             <div class="tab-pane fade show active profile-overview" id="addPlan">
                 <section class="h-100">
                     <div class="container-fluid h-100 py-5">
-                        <div class="card shopping-cart" style="border-radius: 15px;">
+                        <div class=" shopping-cart" style="border-radius: 15px;">
                             <div class="card-body text-black">
-                                <div class="ml-2 row">
+                                <div class="ml-2 row p-2">
+                                <h3>اختر تفاصيل خطتك</h3>
                                     <form class=" g-2 mt-4 " [formGroup]="PlanForm" (ngSubmit)="addPlan(PlanForm)">
 
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group row mb-3">
+                                            <div class="col-6">
+                                                <div class="form-group  mb-3">
                                                     <label for="caloriesFrom"
-                                                        class="col-sm-2 col-form-label">CaloriesFrom</label>
-                                                    <div class="col-sm-10">
+                                                        class=" col-form-label">من (عدد الكالوريز)</label>
+                                                    <div >
                                                         <input type="number" class="form-control" id="caloriesFrom"
                                                             formControlName="CaloriesFrom" />
                                                     </div>
@@ -43,15 +49,16 @@
 
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group row mb-3">
-                                                    <label for="caloriesTo"
-                                                        class="col-sm-2 col-form-label">CaloriesTo</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="number" class="form-control" id="caloriesTo" formControlName="CaloriesTo" />
-
+                                            <div class="col-6">
+                                              
+                                                    <div class="form-group  mb-3">
+                                                        <label for="caloriesFrom"
+                                                            class=" col-2 col-form-label"> إلى</label>
+                                                        <div class="col">
+                                                            <input type="number" class="form-control" id="caloriesFrom"
+                                                                formControlName="CaloriesFrom" />
+                                                        </div>
                                                     </div>
-
                                                     <div *ngIf="CaloriesTO?.errors != null && CaloriesTO?.touched">
                                                         <p *ngIf="CaloriesTO?.errors?.['required']" class="text-danger">
                                                             يجب ادخال
@@ -59,19 +66,20 @@
 
                                                     </div>
                                                 </div>
-                                            </div>
+                                            
                                         </div>
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group row mb-3">
                                                     <label for="duration"
-                                                        class="col-sm-1 col-form-label">Duration</label>
+                                                        class="col col-form-label">مدة الخطة </label>
                                                     <div class="col-sm-10">
                                                         <!-- Inside the addPlan tab -->
                                                         <input type="number" class="form-control" id="duration"
                                                             formControlName="duration" />
 
                                                     </div>
+                                                    <div class="col"></div>
                                                 </div>
 
                                                 <div *ngIf="duration?.errors != null && duration?.touched">
@@ -83,20 +91,13 @@
                                             </div>
                                         </div>
                                         <div class="row " style="text-align: center;">
-                                            <div class="col">
-                                                <div class="col-sm-10 " style="text-align: center;">
-                                                    <button type="submit" class="btn btn-info "
-                                                        style="width: 100px;">ADD</button>
+                                            <div class="">
+                                                <div class="" style="text-align: center;">
+                                                    <button type="submit" class="btn "
+                                                        >أضافة الخطة</button>
                                                 </div>
                                             </div>
-                                            <!-- <div class="col">
-                                                    <div class="col-sm-10 " style="text-align: center;">
-                                                        <li class="nav-item">
-
-                                                        <button  class="nav-link"  type="submit" class="btn btn-info " style="width: 100px;">Day +</button>
-                                                        </li>
-                                                    </div>
-                                                </div> -->
+                                          
                                         </div>
                                     </form>
 
@@ -114,7 +115,7 @@
 
 
 
-        <div class="tab-pane fade profile-settings" id="addDay" style="direction: ltr;">
+        <div class="tab-pane fade profile-settings" id="addDay" style="direction: ltr; overflow-y: auto; overflow-x: hidden; height: 68vh;">
 
 
             <div class="row text-center">
@@ -123,8 +124,7 @@
 
                     <div class="  my-3">
                         <select name="catogry" (change)="ChangeCatigory()" id="catogry" formControlName="categoryID">
-
-                            <option selected disabled value="category">التصنيف</option>
+                            <option selected disabled >التصنيف</option>
                             <option value="0">الإفطار</option>
                             <option value="1">الغداء</option>
                             <option value="2">العشاء</option>
@@ -172,7 +172,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <button type="submit" class="btn my-4">
+                            <button type="submit" class="btn">
                                أضافة وجبة
                             </button>
                         </div>
@@ -182,11 +182,15 @@
                     
 
 
-                </form> <div class="row">
-                    <button type="submit"  class="btn my-4" (click)="addDayList()">
-                       أضافة يوم
-                    </button>
+                </form> 
+
+                <div class="text-center mt-3">
+                    <button  type="submit"  class="btn col-4 " (click)="addDayList()">
+                        أضافة يوم
+                     </button>
                 </div>
+                
+              
             </div>
 
 

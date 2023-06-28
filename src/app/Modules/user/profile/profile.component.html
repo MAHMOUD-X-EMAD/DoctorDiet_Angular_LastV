@@ -23,7 +23,7 @@
             </li>
 
             <li class="nav-item">
-              <button class="nav-link " data-bs-toggle="tab" data-bs-target="#profile-edit" (click)="GetProfile()">تعديل
+              <button class="nav-link " data-bs-toggle="tab" data-bs-target="#profile-edit" >تعديل
                 بياناتك</button>
             </li>
 
@@ -86,29 +86,38 @@
             <div class="tab-pane fade profile-settings" id="profile-settings">
               <h2 class="card-title my-5" style="color:  #1C4980;font-weight: bold;"><i
                   class="fa-sharp fa-solid fa-flag ms-2"></i>اشتراكاتك</h2>
-              <form>
-                <div class="mb-3" *ngFor="let datas of  this.data?.customPlans">
-
-                  <div class="card text-white mb-3 p-2"
-                    style="max-width: 25rem; height: 15rem; background-color: #1C4980;">
-                    <div class="card-header mb-3" style="font-weight: bold; font-size: 20px;">خطتك</div>
-                    <div class="card-body">
-                      <h5 class="card-title mb-4" style="font-weight: 200px; font-size: 17px;">مدة الخطة &nbsp;  {{datas.duration}}</h5>
-                      <h5 class="card-title mb-4" style="font-weight: 200px; font-size: 17px;" >الهدف  &nbsp;  {{data.goal}}</h5>
-                      <p class="card-text mb-4" style="font-weight: 200px; font-size: 17px;">الدكتور &nbsp; {{this.data?.doctorPatientBridge[0].fullName}} </p>
-
+                  <form>
+                    <div class="mb-3" *ngFor="let datas of  plans">
+    
+                      <div class="card text-white mb-3 p-2"
+                        style="max-width: 25rem; height: 15rem; background-color: #1C4980;">
+                        <div class="card-header mb-3" style="font-weight: bold; font-size: 20px;">خطتك</div>
+                        <div class="card-body">
+                          <h5 class="card-title mb-4" style="font-weight: 200px; font-size: 17px;">مدة الخطة &nbsp;  {{datas.duration}}</h5>
+                          <h5 class="card-title mb-4" style="font-weight: 200px; font-size: 17px;" >الهدف  &nbsp;  {{datas.goal}}</h5>
+                          <p class="card-text mb-4" style="font-weight: 200px; font-size: 17px;">الدكتور &nbsp; {{datas.doctorName}} </p>
+    
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-
-              </form>
+    
+                  </form>
             </div>
 
 
             <div class="tab-pane fade profile-edit" id="profile-edit">
               <h2 class="card-title" style="color:  #1C4980;font-weight: bold;"><i
                   class="fa-sharp fa-solid fa-user-pen ms-2"></i>تعديل بياناتك</h2>
-              <form [formGroup]="UserInfo" (ngSubmit)="onSubmit(UserInfo)">
+
+                  <div *ngIf="showDone" class="confirmation-box">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                      تم تغير بياناتك بنجاح 
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="hideConfirmation()"></button>
+                    </div>
+                  
+               
+                  </div>
+              <form  >
 
 
                 <div class="mb-3">
@@ -117,8 +126,8 @@
                     <span class="input-group-text" style="background-color: #1C4980; color: aliceblue;">
                       <i class="fa-sharp fa-solid fa-signature"></i>
                     </span>
-                    <input type="text" class="form-control" formControlName="fullName" id="Lname"
-                      placeholder="تعديل اسم كامل" value='{{data?.fullName}}'>
+                    <input  [(ngModel)]="EditUser.FullName" type="text" class="form-control"  id="FullName" name="FullName"
+                      placeholder="تعديل اسم كامل" value='{{data?.fullName}}' (ngModelChange)="onInputChange('FullName', $event)">
                   </div>
 
 
@@ -130,6 +139,58 @@
                   </div>
                 </div>
 
+
+                <div class="mb-3">
+                  <label for="diseases" class="form-label">اسم المرض</label>
+                  <div class="input-group">
+                    <span class="input-group-text" style="background-color: #1C4980; color: aliceblue;">
+                      <i class="fa-sharp fa-solid fa-signature"></i>
+                    </span>
+                    <input type="text" class="form-control" name="diseases" id="diseases"  [(ngModel)]="EditUser.Diseases"
+                      placeholder="تعديل اسم المرض" value='{{data?.diseases}}' (ngModelChange)="onInputChange('Diseases', $event)">
+                  </div>
+                </div>
+
+
+                <div class="mb-3">
+                  <label for="profileImage" class="form-label">صورتك</label>
+                  <div class="input-group">
+                    <span class="input-group-text" style="background-color: #1C4980; color: aliceblue;">
+                      <i class="fa-sharp fa-solid fa-signature"></i>
+                    </span>
+                    <input type="file" class="form-control" id="profileImage" name="ProfileImage" [(ngModel)]="EditUser.ProfileImage"
+                      placeholder="تعديل الصورة"  (ngModelChange)="onInputChange('ProfileImage', $event)"  (change)="changeImg($event)">
+                  </div>
+
+
+                  <div *ngIf="profileImage?.errors != null && profileImage?.touched">
+
+                    <p class="text-danger" *ngIf="profileImage?.errors?.['required']">
+                      أدخل صورتك.
+                    </p>
+                  </div>
+                </div>
+
+
+                <div class="mb-3">
+                  <label for="activityRates" class="form-label">معدل نشاطك</label>
+                  <div class="input-group">
+                    <span class="input-group-text" style="background-color: #1C4980; color: aliceblue;">
+                      <i class="fa-sharp fa-solid fa-signature"></i>
+                    </span>
+                    <input type="text" class="form-control"  name="ActivityRates" id="ActivityRates"  [(ngModel)]="EditUser.ActivityRates"
+                      placeholder="تعديل معدل نشاطك" value='{{data?.activityRates}}' (ngModelChange)="onInputChange('ActivityRates', $event)">
+                  </div>
+
+
+                  <div *ngIf="activityRates?.errors != null && activityRates?.touched">
+
+                    <p class="text-danger" *ngIf="activityRates?.errors?.['required']">
+                      تعديل معدل نشاطك
+                    </p>
+                  </div>
+                </div>
+
                 <div class="mb-3">
                   <label for="email" class="form-label">البريد الالكتروني</label>
 
@@ -137,8 +198,8 @@
                     <span class="input-group-text" style="background-color: #1C4980; color: aliceblue;">
                       <i class="fa-sharp fa-solid fa-envelope"></i>
                     </span>
-                    <input type="email" class="form-control" id="email" formControlName="email"
-                      placeholder="تعديل بريدك الالكتروني" value='{{data?.email}}'>
+                    <input type="email" class="form-control" id="email"  name="Email"  [(ngModel)]="EditUser.Email"
+                      placeholder="تعديل بريدك الالكتروني" value='{{data?.email}}' (ngModelChange)="onInputChange('Email', $event)">
                   </div>
 
 
@@ -158,8 +219,8 @@
                     <span class="input-group-text" style="background-color: #1C4980; color: aliceblue;">
                       <i class="fa-sharp fa-solid fa-phone-volume"></i>
                     </span>
-                    <input type="text" class="form-control" id="phone" formControlName="phoneNumber"
-                      placeholder="تعديل رقم تليفونك" value='{{data?.phoneNumber}}'>
+                    <input type="text" class="form-control" id="phone" name="PhoneNumber"  [(ngModel)]="EditUser.PhoneNumber"
+                      placeholder="تعديل رقم تليفونك" value='{{data?.phoneNumber}}' (ngModelChange)="onInputChange('PhoneNumber', $event)">
                   </div>
                   <div *ngIf="phoneNumber?.errors != null && phoneNumber?.touched">
 
@@ -167,9 +228,7 @@
                       أادخل الرقم بشكل صحيح
                     </p>
                   </div>
-
-
-                </div>
+               </div>
 
                 <div class="mb-3">
                   <label for="number" class="form-label">الوزن</label>
@@ -178,8 +237,8 @@
                     <span class="input-group-text" style="background-color: #1C4980; color: aliceblue;">
                       <i class="fa-sharp fa-solid fa-scale-unbalanced-flip"></i>
                     </span>
-                    <input type="number" class="form-control" id="weight" formControlName="weight"
-                      placeholder="تعديل وزنك" value='{{data?.weight}}'>
+                    <input type="text" class="form-control" id="weight" name="Weight"  [(ngModel)]="EditUser.Weight"
+                      placeholder="تعديل وزنك" value='{{data?.weight}}' (ngModelChange)="onInputChange('Weight', $event)">
                   </div>
                 </div>
 
@@ -190,13 +249,13 @@
                     <span class="input-group-text" style="background-color: #1C4980; color: aliceblue;">
                       <i class="fa-sharp fa-solid fa-ruler"></i>
                     </span>
-                    <input type="number" class="form-control" id="height" formControlName="height"
-                      placeholder="تعديل طولك" value='{{data?.height}}'>
+                    <input type="text" class="form-control" id="height"  [(ngModel)]="EditUser.Height" name="Height"
+                      placeholder="تعديل طولك" value='{{data?.height}}'  (ngModelChange)="onInputChange('Height', $event)" >
                   </div>
                 </div>
 
 
-                <button type="submit" style="background-color: #1C4980;" class="btn btn-primary my-4">حفظ
+                <button type="submit" style="background-color: #1C4980;" class="btn btn-primary my-4" (click)="UpdateUSer()">حفظ
                   التغييرات</button>
               </form>
             </div>

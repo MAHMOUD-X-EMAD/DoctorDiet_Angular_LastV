@@ -1,6 +1,10 @@
 <div class="row ">
   <div class="card rounded-0 m-auto table-responsive" style="width: 95% ;">
     <span class="fw-bold fs-4 text-center p-4">طلبات الاشتراك</span>
+<div class="alert alert-danger text-center" role="alert" *ngIf="AlertMsg">
+  {{AlertMsg}}
+</div>
+
     <table class="table table-bordered table-hover text-center border">
       <thead class="border">
         <th class="border">رفض/قبول</th>
@@ -19,11 +23,11 @@
           <button class="btn btn-danger m-2 buttonn2"(click)="RejectPatient(patient.noEat[0].patientId)" >رفض</button>
         </td>
 
-        <td class="border">{{patient.phoneNumber}}</td>
-        <td class="border">{{patient.email}}</td>
-        <td class="border">{{patient.weight}}</td>
-        <td class="border">{{patient.height}}</td>
-        <td class="border">{{patient.fullName}}</td>
+        <td class="border">{{patient?.phoneNumber}}</td>
+        <td class="border">{{patient?.email}}</td>
+        <td class="border">{{patient?.weight}}</td>
+        <td class="border">{{patient?.height}}</td>
+        <td class="border">{{patient?.fullName}}</td>
       </tr>
           </tbody>
     </table>

@@ -1,4 +1,16 @@
 
+.card{
+  height: 82vh;   
+
+}
+.profile-settings::-webkit-scrollbar {
+    width: 0.5em;
+    background-color: #F5F5F5;
+  }
+  
+  .profile-settings::-webkit-scrollbar-thumb {
+    background-color: #888;
+  }
 
 .text-input{
   
@@ -49,10 +61,22 @@
       color: #0d1c9e;
       font-weight: bolder;
   }
-  
+  h3{
+    text-align: center;
+    color: #0d1c9e;
+    font-size: xx-large;
+    margin: 1%;
+  }
+  label{
+    font-size: large;
+  }
   button{
     background-color: #0d1c9e;
     color: white;
+  }
+  button:hover{
+    background-color: #ffffff;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   }
   
   
